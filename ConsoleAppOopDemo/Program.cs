@@ -1,5 +1,5 @@
-﻿using StudentRepository.Repo;
-using StudentRepository.Entities;
+﻿using StudentRepository.Entities;
+using StudentRepository.Repository;
 
 namespace ConsoleAppOopDemo.Programming;
 public class Program
@@ -15,9 +15,9 @@ public class Program
             - In thong tin ra man hinh
          
          */
-        IRepository repo= new Repository();
+        IRepository<Student> repo= new Repository();
         Student s1 = new Student(3, "Bao Thanh Thien", "Quan 1", 9.5);
-        /*
+       
         repo.Add(new Student(1, "Ma Van Meo", "Quan 1", 8.5));
         repo.Add(new Student(2, "Phi Van Long", "Quan 1", 3.5));
         repo.Add(s1);
@@ -28,13 +28,19 @@ public class Program
         
         repo.Delete(s1);
         Console.WriteLine("=============================");
-        */
+        
         repo.Add(s1);
-        repo.Delete(s1);
+        //repo.Delete(s1);
 
         repo.Display();
-       
-        
+        Console.WriteLine("=============================");
+
+        IEnumerable<Student> students = repo.FindAll(7.0);
+
+        foreach (Student student in students)
+        {
+            Console.WriteLine(student);
+        }
 
         Console.ReadLine();
 
