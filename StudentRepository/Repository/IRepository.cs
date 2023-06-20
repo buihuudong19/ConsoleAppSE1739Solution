@@ -1,4 +1,5 @@
 ﻿using StudentRepository.Entities;
+using System.Linq.Expressions;
 
 namespace StudentRepository.Repository;
 
@@ -13,5 +14,6 @@ public interface IRepository<T> where T : class
     T Find(int id);
     void Display();
     IEnumerable<T> FindAll(double mark); //return all student ma diem >=7
+    IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate);
 
 }

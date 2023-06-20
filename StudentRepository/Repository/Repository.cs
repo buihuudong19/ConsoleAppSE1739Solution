@@ -1,5 +1,7 @@
 ﻿using StudentRepository.Entities;
 using System.Collections;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace StudentRepository.Repository;
 
@@ -33,6 +35,8 @@ public class Repository: IRepository<Student>
 
     public IEnumerable<Student> GetAll()
         => this._students;
+
+
    
 
     public void Update(Student entity)
@@ -54,6 +58,15 @@ public class Repository: IRepository<Student>
             .Where(s => s.Mark >= mark)
             .OrderByDescending(s => s.Mark) //sorted
             .ToList();
+
+            
+    }
+
+    public IEnumerable<Student> GetAll(Func<Student, bool> predicate)
+    {
+        return this._students
+            .Where(predicate);
+            
 
             
     }
